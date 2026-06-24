@@ -40,7 +40,7 @@ public class CruelQualitiesScript : MonoBehaviour
     public Color redLight = new Color(1f, 0, 0, 1f);
     private bool isOctaveUp = false;
 
-    private string[] notes = new string[] {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
+    private string[] notes = new string[] { "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#" };
 
     private int randomColorIndex;
 
@@ -177,7 +177,7 @@ public class CruelQualitiesScript : MonoBehaviour
         submitButton.OnInteract += delegate () { submitButtonPress(); return false; };
         octaveButton.OnInteract += delegate () { octaveButtonPress(); return false; };
 
-        for(int i = 0; i < 12; i++)
+        for (int i = 0; i < 12; i++)
         {
             arrows[i].text = "";
             lights[i].SetActive(false);
@@ -226,7 +226,7 @@ public class CruelQualitiesScript : MonoBehaviour
         // arrows
 
         // spawning normal
-        for(int i = 0; i < chosenNotes.Length - 1; i++)
+        for (int i = 0; i < chosenNotes.Length - 1; i++)
         {
             arrows[System.Array.IndexOf(notes, chosenNotes[i])].text = "▲";
 
@@ -235,7 +235,7 @@ public class CruelQualitiesScript : MonoBehaviour
         }
 
         // spawning cyan
-        for(int i = 0; i < chosenNotes.Length - 1; i++)
+        for (int i = 0; i < chosenNotes.Length - 1; i++)
         {
             int shouldPlace = Random.Range(0, 3);
             if ((arrows[i].color == new Color(1f, 1f, 0, 1f)) && (arrows[nextArrow(i, 6)].color == new Color(1f, 1f, 1f, 1f)) && (shouldPlace == 0))
@@ -251,7 +251,7 @@ public class CruelQualitiesScript : MonoBehaviour
         }
 
         // spawning purple
-        for(int i = 0; i < chosenNotes.Length - 1; i++)
+        for (int i = 0; i < chosenNotes.Length - 1; i++)
         {
             int shouldPlace = Random.Range(0, 3);
             if ((arrows[i].color == new Color(1f, 1f, 0, 1f)) && (shouldPlace == 0))
@@ -265,7 +265,7 @@ public class CruelQualitiesScript : MonoBehaviour
         }
 
         // spawning orange
-        for(int i = 0; i < chosenNotes.Length - 1; i++)
+        for (int i = 0; i < chosenNotes.Length - 1; i++)
         {
             int shouldPlace = Random.Range(0, 3);
             if ((arrows[i].color == new Color(1f, 1f, 0, 1f)) && (arrows[previousArrow(i, (bombInfo.GetBatteryCount() + bombInfo.GetPortCount()) % 12)].color == new Color(1f, 1f, 1f, 1f)) && (shouldPlace == 0))
@@ -274,31 +274,31 @@ public class CruelQualitiesScript : MonoBehaviour
                 arrows[i].color = new Color(1f, 1f, 1f, 1f);
 
                 arrows[previousArrow(i, (bombInfo.GetBatteryCount() + bombInfo.GetPortCount()) % 12)].text = "▲";
-                arrows[previousArrow(i, (bombInfo.GetBatteryCount() + bombInfo.GetPortCount()) % 12)].color = new Color(1f, (165f/255f), 0, 1f);
+                arrows[previousArrow(i, (bombInfo.GetBatteryCount() + bombInfo.GetPortCount()) % 12)].color = new Color(1f, (165f / 255f), 0, 1f);
 
                 break;
             }
         }
 
         // spawning gray
-        for(int i = 0; i < chosenNotes.Length - 1; i++)
+        for (int i = 0; i < chosenNotes.Length - 1; i++)
         {
             int shouldPlace = Random.Range(0, 3);
-            if(shouldPlace == 0)
+            if (shouldPlace == 0)
             {
-                if((new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31 }.Contains(bombInfo.GetSerialNumberNumbers().Sum())) && (arrows[i].color == new Color(1f, 1f, 1f, 1f)))
+                if ((new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31 }.Contains(bombInfo.GetSerialNumberNumbers().Sum())) && (arrows[i].color == new Color(1f, 1f, 1f, 1f)))
                 {
                     arrows[i].text = "▲";
                     arrows[i].color = new Color(0.5f, 0.5f, 0.5f, 1f);
                 }
                 else
                 {
-                    if(((bombInfo.GetSerialNumberNumbers().Last() % 2) == 1) && (arrows[i].color == new Color(0, 1f, 0, 1f)))
+                    if (((bombInfo.GetSerialNumberNumbers().Last() % 2) == 1) && (arrows[i].color == new Color(0, 1f, 0, 1f)))
                     {
                         arrows[i].text = "▲";
                         arrows[i].color = new Color(0.5f, 0.5f, 0.5f, 1f);
                     }
-                    else if(((bombInfo.GetSerialNumberNumbers().Last() % 2) == 0) && (arrows[i].color == new Color(1f, 1f, 0, 1f)))
+                    else if (((bombInfo.GetSerialNumberNumbers().Last() % 2) == 0) && (arrows[i].color == new Color(1f, 1f, 0, 1f)))
                     {
                         arrows[i].text = "▲";
                         arrows[i].color = new Color(0.5f, 0.5f, 0.5f, 1f);
@@ -328,9 +328,9 @@ public class CruelQualitiesScript : MonoBehaviour
         }
 
         // spawning colorblind
-        if(colorblindMode.ColorblindModeActive == true)
+        if (colorblindMode.ColorblindModeActive == true)
         {
-            for(int i = 0; i < arrows.Length; i++)
+            for (int i = 0; i < arrows.Length; i++)
             {
                 if (arrows[i].text == "▲")
                 {
@@ -342,7 +342,7 @@ public class CruelQualitiesScript : MonoBehaviour
                     Color cyan = new Color(0, 1f, 1f, 1f);
                     Color red = new Color(1f, 0, 0, 1f);
                     Color purple = new Color(0.502f, 0, 0.502f, 1f);
-                    Color orange = new Color(1f, (165f/255f), 0, 1f);
+                    Color orange = new Color(1f, (165f / 255f), 0, 1f);
                     Color gray = new Color(0.502f, 0.502f, 0.502f, 1f);
 
                     if (arrows[i].color == yellow)
@@ -372,7 +372,8 @@ public class CruelQualitiesScript : MonoBehaviour
                     else if ((Mathf.Abs(arrows[i].color.r - gray.r) <= 0.1f) && (Mathf.Abs(arrows[i].color.g - gray.g) <= 0.1f) && (Mathf.Abs(arrows[i].color.b - gray.b) <= 0.1f))
                     {
                         colorblindTexts[i].text = "A";
-                    } else { Debug.Log($"Arrows is {arrows[i].color} and color gray is {gray}"); }
+                    }
+                    else { Debug.Log($"Arrows is {arrows[i].color} and color gray is {gray}"); }
                 }
             }
         }
@@ -397,7 +398,7 @@ public class CruelQualitiesScript : MonoBehaviour
             noteIndex = previousArrow(noteIndex);
         }
 
-        if(chosenBinaryNumber == 0)
+        if (chosenBinaryNumber == 0)
         {
             solutionChordDistances = chordsSpecialDistances[solutionChord];
             allChords = chordsSpecial;
@@ -442,7 +443,7 @@ public class CruelQualitiesScript : MonoBehaviour
 
     private void chordButtonPress()
     {
-        if(!isInNotePlaybackAnimation)
+        if (!isInNotePlaybackAnimation)
         {
             rotateCoroutine = StartCoroutine(rotateWheel());
             currentLight++;
@@ -466,7 +467,7 @@ public class CruelQualitiesScript : MonoBehaviour
 
     private void selectButtonPress()
     {
-        if(!isInNotePlaybackAnimation)
+        if (!isInNotePlaybackAnimation)
         {
             if (isOctaveUp)
             {
@@ -489,7 +490,7 @@ public class CruelQualitiesScript : MonoBehaviour
     {
         isInNotePlaybackAnimation = true;
 
-        for(int i = 0; i < blinkerLights.Length; i++)
+        for (int i = 0; i < blinkerLights.Length; i++)
         {
             audio.PlaySoundAtTransform(notes[i], transform);
             blinkerLights[i].GetComponent<Renderer>().material = redLightMaterial;
@@ -499,7 +500,7 @@ public class CruelQualitiesScript : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
 
-        for(int i = 0; i < blinkerLights.Length; i++)
+        for (int i = 0; i < blinkerLights.Length; i++)
         {
             audio.PlaySoundAtTransform(notes[i] + "up", transform);
             blinkerLights[i].GetComponent<Renderer>().material = yellowLightMaterial;
@@ -513,6 +514,9 @@ public class CruelQualitiesScript : MonoBehaviour
 
         if (isCorrect)
         {
+            module.HandlePass();
+            audio.PlaySoundAtTransform("Solve", transform);
+
             for (int i = 0; i < blinkerLights.Length; i++)
             {
                 audio.PlaySoundAtTransform(notes[i] + "up", transform);
@@ -522,9 +526,7 @@ public class CruelQualitiesScript : MonoBehaviour
             }
 
             isSolved = true;
-            audio.PlaySoundAtTransform("Solve", transform);
             Debug.LogFormat("[Cruel Qualities #{0}] Correct! Successfully submitted the correct chord!", moduleId);
-            module.HandlePass();
         }
         else
         {
@@ -589,7 +591,7 @@ public class CruelQualitiesScript : MonoBehaviour
 
     private void submitButtonPress()
     {
-        if(!isInNotePlaybackAnimation && !isSolved)
+        if (!isInNotePlaybackAnimation && !isSolved)
         {
             List<string> inputtedNotesList = new List<string>();
             string[] inputtedNotes;
@@ -635,7 +637,7 @@ public class CruelQualitiesScript : MonoBehaviour
 
             for (int i = 0; i < arrows.Length; i++)
             {
-                if (((lights[i].activeSelf) && !(solutionNotes.Contains(notes[i]))) || (!(lights[i].activeSelf) && (solutionNotes.Contains(notes[i]))))
+                if ((lights[i].activeSelf && !solutionNotes.Contains(notes[i])) || (!lights[i].activeSelf && solutionNotes.Contains(notes[i])))
                 {
                     isCorrect = false;
                 }
@@ -669,7 +671,7 @@ public class CruelQualitiesScript : MonoBehaviour
 
     private void octaveButtonPress()
     {
-        if(isOctaveUp)
+        if (isOctaveUp)
         {
             audio.PlaySoundAtTransform("Octave Down", transform);
         }
@@ -706,7 +708,7 @@ public class CruelQualitiesScript : MonoBehaviour
     private int previousArrow(int current, int amount = 1)
     {
         int returnInt = current;
-        for(int i = 0; i < amount; i++)
+        for (int i = 0; i < amount; i++)
         {
             if (((returnInt - 1) < arrows.Length) && ((returnInt - 1) >= 0)) returnInt--;
             else returnInt = arrows.Length - 1;
@@ -835,7 +837,7 @@ public class CruelQualitiesScript : MonoBehaviour
 
     private void ToggleColorblind()
     {
-        if(TPColorblind == false)
+        if (TPColorblind == false)
         {
             for (int i = 0; i < arrows.Length; i++)
             {
@@ -885,7 +887,8 @@ public class CruelQualitiesScript : MonoBehaviour
             }
 
             TPColorblind = true;
-        } else
+        }
+        else
         {
             for (int i = 0; i < 12; i++)
             {
@@ -898,20 +901,20 @@ public class CruelQualitiesScript : MonoBehaviour
 
     private IEnumerator TwitchHandleForcedSolve()
     {
-        for(int i = 0; i < lights.Length; i++)
+        for (int i = 0; i < lights.Length; i++)
         {
             lights[i].SetActive(false);
         }
 
         if (isOctaveUp) octaveButton.OnInteract();
 
-        for(int i = 0; i < currentLight; i++)
+        for (int i = 0; i < currentLight; i++)
         {
             chordButton.OnInteract();
             yield return new WaitForSeconds(0.05f);
         }
 
-        if(isPurpleSpawned && isPurpleRoot)
+        if (isPurpleSpawned && isPurpleRoot)
         {
             for (int i = 0; i < nextArrow(solutionRoot); i++)
             {
@@ -919,7 +922,7 @@ public class CruelQualitiesScript : MonoBehaviour
                 yield return new WaitForSeconds(0.05f);
             }
         }
-        else if(isPurpleSpawned)
+        else if (isPurpleSpawned)
         {
             for (int i = 0; i < previousArrow(solutionRoot); i++)
             {
@@ -936,7 +939,7 @@ public class CruelQualitiesScript : MonoBehaviour
             }
         }
 
-        for(int j = 0; j < solutionNotes.Length; j++)
+        for (int j = 0; j < solutionNotes.Length; j++)
         {
             for (int i = 0; i < solutionChordDistances[j]; i++)
             {
