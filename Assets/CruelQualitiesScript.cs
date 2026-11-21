@@ -284,9 +284,9 @@ public class CruelQualitiesScript : MonoBehaviour
         for (int i = 0; i < chosenNotes.Length - 1; i++)
         {
             int shouldPlace = Random.Range(0, 3);
-            if (shouldPlace == 0)
+            if (shouldPlace == 0 && (arrows[i].color == new Color(1f, 1f, 1f, 1f)))
             {
-                if ((new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31 }.Contains(bombInfo.GetSerialNumberNumbers().Sum())) && (arrows[i].color == new Color(1f, 1f, 1f, 1f)))
+                if (new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31 }.Contains(bombInfo.GetSerialNumberNumbers().Sum()))
                 {
                     arrows[i].text = "▲";
                     arrows[i].color = new Color(0.5f, 0.5f, 0.5f, 1f);
